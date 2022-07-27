@@ -1,5 +1,7 @@
 FROM debian:11
 
+ENV container docker
+
 RUN apt-get update && \
     apt-get -y install \
     lsb-release ca-certificates apt-transport-https software-properties-common wget gnupg2 systemd
@@ -16,4 +18,8 @@ RUN echo "date.timezone = Europe/Amsterdam" > /etc/php/8.0/mods-available/centre
 
 RUN systemctl enable php8.0-fpm apache2 centreon cbd centengine gorgoned centreontrapd snmpd snmptrapd
 
-CMD [ "/lib/systemd/systemd" ]
+VOLUME [ "/sys/fs/cgroup", "/run", "/run/lock", "/tmp" ]
+
+STOPSIGNAL SIGRTMIN+3
+
+CMD [ "/sbin/init" ]
