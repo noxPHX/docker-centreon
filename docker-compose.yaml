@@ -1,0 +1,16 @@
+services:
+
+  centreon-central:
+    build: .
+    image: centreon:central
+    container_name: centreon-central
+    hostname: centreon-central
+    restart: always
+    tty: true
+    ports:
+      - "80:80"
+    tmpfs:
+      - /tmp:rw,rprivate,nosuid,nodev
+      - /run:rw,rprivate,nosuid,nodev
+      - /run/lock:rw,rprivate,nosuid,nodev
+      - /var/log/journal:rw,rprivate,nosuid,nodev
