@@ -13,6 +13,8 @@ VOLUME [ "/sys/fs/cgroup", "/run", "/run/lock", "/tmp" ]
 
 STOPSIGNAL SIGRTMIN+3
 
+CMD sleep infinity; exec /sbin/init
+
 #################################
 # Centreon install
 #################################
@@ -35,5 +37,3 @@ RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt
 
 RUN echo "date.timezone = Europe/Amsterdam" > /etc/php/8.0/mods-available/centreon.ini && \
     systemctl enable php8.0-fpm apache2 centreon cbd centengine gorgoned centreontrapd snmpd snmptrapd
-
-CMD [ "/sbin/init" ]
