@@ -8,6 +8,9 @@ git clone https://github.com/noxPHX/docker-centreon.git && cd docker-centreon
 
 https://docs.centreon.com/docs/installation/web-and-post-installation/#web-installation  
 
+`docker exec centreon-central systemctl restart cbd centengine gorgoned`
+
+
 ## Doc
 https://docs.centreon.com/docs/installation/installation-of-a-remote-server/using-packages/  
 https://serverfault.com/questions/1053187/systemd-fails-to-run-in-a-docker-container-when-using-cgroupv2-cgroupns-priva  

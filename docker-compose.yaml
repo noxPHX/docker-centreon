@@ -9,8 +9,38 @@ services:
     tty: true
     ports:
       - "80:80"
+    volumes:
+      - centreon-etc:/etc/centreon
+      - centreon-var:/var/lib/centreon
+      - centreon-engine-etc:/etc/centreon-engine
+      - centreon-engine-var:/var/lib/centreon-engine
+      - centreon-gorgone-etc:/etc/centreon-gorgone
+      - centreon-gorgone-var:/var/lib/centreon-gorgone
+      - centreon-broker-etc:/etc/centreon-broker
+      - centreon-broker-var:/var/lib/centreon-broker
+      - centreon-db:/var/lib/mysql
     tmpfs:
       - /tmp:rw,rprivate,nosuid,nodev
       - /run:rw,rprivate,nosuid,nodev
       - /run/lock:rw,rprivate,nosuid,nodev
       - /var/log/journal:rw,rprivate,nosuid,nodev
+
+volumes:
+  centreon-db:
+    name: centreon-db
+  centreon-etc:
+    name: centreon-etc
+  centreon-var:
+    name: centreon-var
+  centreon-engine-etc:
+    name: centreon-engine-etc
+  centreon-engine-var:
+    name: centreon-engine-var
+  centreon-gorgone-etc:
+    name: centreon-gorgone-etc
+  centreon-gorgone-var:
+    name: centreon-gorgone-var
+  centreon-broker-etc:
+    name: centreon-broker-etc
+  centreon-broker-var:
+    name: centreon-broker-var
