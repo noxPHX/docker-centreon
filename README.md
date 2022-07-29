@@ -1,4 +1,12 @@
-# centreon
+# Docker Centreon
+
+## Install 🛠️
+```bash
+git clone https://github.com/noxPHX/docker-centreon.git && cd docker-centreon
+./setup.sh
+```
+
+https://docs.centreon.com/docs/installation/web-and-post-installation/#web-installation  
 
 ## Doc
 https://docs.centreon.com/docs/installation/installation-of-a-remote-server/using-packages/  
