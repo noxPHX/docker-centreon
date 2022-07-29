@@ -20,6 +20,7 @@ CMD sleep infinity; exec /sbin/init
 #################################
 
 RUN apt-get -y install \
+    cron \
     wget \
     gnupg2 \
     lsb-release \
