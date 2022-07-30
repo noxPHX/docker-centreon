@@ -24,6 +24,7 @@ RUN apt-get -y install \
     wget \
     gnupg2 \
     lsb-release \
+    openssh-client \
     ca-certificates \
     apt-transport-https \
     software-properties-common

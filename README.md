@@ -10,6 +10,8 @@ https://docs.centreon.com/docs/installation/web-and-post-installation/#web-insta
 
 `docker exec centreon-central systemctl restart cbd centengine gorgoned`
 
+## Notes
+No sshd
 
 ## Doc
 https://docs.centreon.com/docs/installation/installation-of-a-remote-server/using-packages/  
