@@ -23,11 +23,13 @@ RUN apt-get -y install \
     cron \
     wget \
     gnupg2 \
+    locales \
     lsb-release \
     openssh-client \
     ca-certificates \
     apt-transport-https \
-    software-properties-common
+    software-properties-common && \
+    update-locale
 
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/sury-php.list && \
     wget -O- https://packages.sury.org/php/apt.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/php.gpg  > /dev/null 2>&1 && \
