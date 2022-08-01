@@ -9,7 +9,7 @@ ENV container docker
 RUN apt-get update && \
     apt-get -y install systemd
 
-VOLUME [ "/sys/fs/cgroup", "/run", "/run/lock", "/tmp" ]
+VOLUME [ "/tmp", "/run", "/run/lock", "/var/log/journal" ]
 
 STOPSIGNAL SIGRTMIN+3
 
