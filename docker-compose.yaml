@@ -10,6 +10,8 @@ services:
     stop_grace_period: 30s
     ports:
       - "80:80"
+    networks:
+      - centreon_net
     volumes:
       - centreon-etc:/etc/centreon
       - centreon-var:/var/lib/centreon
@@ -45,3 +47,13 @@ volumes:
     name: centreon-broker-etc
   centreon-broker-var:
     name: centreon-broker-var
+
+networks:
+  centreon_net:
+    name: centreon_net
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.25.0.12/30"
+    driver_opts:
+      com.docker.network.bridge.name: dbr-centreon
