@@ -1,7 +1,10 @@
 services:
 
   centreon-central:
-    build: .
+    build:
+      context: .
+      args:
+        TZ: Europe/Amsterdam
     image: centreon:central
     container_name: centreon-central
     hostname: centreon-central

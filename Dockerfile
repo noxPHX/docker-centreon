@@ -39,6 +39,8 @@ RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt
     apt-get -y install centreon && \
     rm -rf /var/lib/apt/lists/*
 
-RUN echo "date.timezone = Europe/Amsterdam" > /etc/php/8.0/mods-available/centreon.ini && \
+ARG TZ
+
+RUN echo "date.timezone = ${TZ}" > /etc/php/8.0/mods-available/centreon.ini && \
     sed -i 's/^agentaddress.*$/agentaddress 127.0.0.1/' /etc/snmp/snmpd.conf && \
     systemctl enable php8.0-fpm apache2 centreon cbd centengine gorgoned centreontrapd snmpd snmptrapd

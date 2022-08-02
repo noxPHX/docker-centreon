@@ -7,7 +7,7 @@ Only [Docker](https://docs.docker.com/get-docker/) and [Compose](https://docs.do
 
 | Tool          | Version |
 |:-------------:|:-------:|
-| Docker        |   19    |
+| Docker        |  20.10  |
 | Compose       |  1.29   |
 
 *The container requires a kernel that supports cgroups v2, to ensure they are supported you can run and check the result of the following command: `grep cgroup2 /proc/filesystems`.*  
@@ -23,6 +23,8 @@ git clone https://github.com/noxPHX/docker-centreon.git && cd docker-centreon
 ### SSL
 
 ### Configuration
+You can customize the timezone passed as a build argument in the Compose file *(l.7)*.  
+Default value: `Europe/Amsterdam`.
 
 ### Build
 ```bash
