@@ -1,1 +1,6 @@
+# IDE related
 .idea/
+
+# Secrets
+nginx/ssl/*
+!nginx/ssl/.gitkeep

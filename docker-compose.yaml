@@ -11,8 +11,6 @@ services:
     restart: always
     tty: true
     stop_grace_period: 30s
-    ports:
-      - "80:80"
     networks:
       - centreon_net
     volumes:
@@ -30,6 +28,30 @@ services:
       - /run:rw,rprivate,nosuid,nodev
       - /run/lock:rw,rprivate,nosuid,nodev
       - /var/log/journal:rw,rprivate,nosuid,nodev
+
+  centreon_nginx:
+    build:
+      context: nginx
+    image: centreon:nginx
+    container_name: centreon_nginx
+    hostname: centreon_nginx
+    restart: always
+    ports:
+      - "80:8080"
+      - "443:44380"
+    networks:
+      - centreon_net
+    secrets:
+      - source: certificate
+        target: /srv/certificates/fullchain.pem
+      - source: private_key
+        target: /srv/certificates/privkey.pem
+      - source: dh_params
+        target: /srv/certificates/dhparams.pem
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
 
 volumes:
   centreon-db:
@@ -51,12 +73,23 @@ volumes:
   centreon-broker-var:
     name: centreon-broker-var
 
+secrets:
+
+  certificate:
+    file: ./nginx/ssl/fullchain.pem
+
+  private_key:
+    file: ./nginx/ssl/privkey.pem
+
+  dh_params:
+    file: ./nginx/ssl/dhparams.pem
+
 networks:
   centreon_net:
     name: centreon_net
     ipam:
       driver: default
       config:
-        - subnet: "172.25.0.12/30"
+        - subnet: "172.26.0.152/29"
     driver_opts:
       com.docker.network.bridge.name: dbr-centreon

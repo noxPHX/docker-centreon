@@ -1,0 +1,27 @@
+server {
+    listen 8080 default_server;
+
+    server_name _;
+
+    return https://$host$request_uri;
+}
+
+server {
+    listen 44380 ssl http2 default_server;
+
+    server_name _;
+
+    location / {
+        resolver                127.0.0.11 valid=10s;
+        set $upstreamName       centreon-central:80;
+        proxy_pass              http://$upstreamName;
+        proxy_redirect          off;
+        proxy_set_header        Host                $host;
+        proxy_set_header        X-Real-IP           $remote_addr;
+    }
+
+    # Healthcheck
+    location /health/ {
+        return 204;
+    }
+}
