@@ -2,6 +2,16 @@
 [Centreon](https://www.centreon.com/) is a network, system and application monitoring tool.  
 This repository will guide you through the installation of a Centreon Central server using Docker.  
 
+## Table of contents 📋
+See below the top level parts of this README:
+
++ [Requirements](#requirements-)
++ [Getting Started](#getting-started-%EF%B8%8F)
++ [Contributing](#contributing-)
++ [Support](#support-%EF%B8%8F)
++ [Licence](#licence-)
+
+
 ## Requirements 🧰
 Only [Docker](https://docs.docker.com/get-docker/) and [Compose](https://docs.docker.com/compose/) are required, the following versions are the minimal requirements:
 
@@ -34,34 +44,47 @@ openssl dhparam -out nginx/ssl/dhparams.pem 4096
 ```
 *Depending on your machine, you might have time to grab a coffee* ☕
 
+Finally, apply correct ownership (*www-data has id 33*)
+```bash
+chown -R $USER:33 nginx/ssl/
+chmod 640 nginx/ssl/*.pem
+```
+*Compose does not support assigning ownership when mounting secrets.*
 
 ### Configuration
 You can customize the timezone passed as a build argument in the Compose file *(l.7)*.  
 Default value: `Europe/Amsterdam`.
 
 ### Build
+To build the images, this simple Compose command will suffice: 
 ```bash
 docker-compose build
 ```
 
 ### First setup
+If you run Centreon for the first time, some additional setup is required, the following script will guide you through the installation of MariaDB.  
 ```bash
 ./setup.sh
 ```
-MariaDB  
-https://docs.centreon.com/docs/installation/web-and-post-installation/#web-installation
+Please set a secure root password and answer 'yes' to all questions, see the according [Centreon's documentation page](https://docs.centreon.com/docs/installation/installation-of-a-central-server/using-packages/#secure-the-database).  
 
+You will then be required to complete the web installation, this is pretty straightforward, the [documentation page](https://docs.centreon.com/docs/installation/web-and-post-installation/#web-installation) may also help you.  
+When asked to restart some services (step 9) you can simply run the following command: 
 ```bash
 docker exec centreon-central systemctl restart cbd centengine gorgoned
 ```
 
 ### Start
+To start the services, a convenient script is available, it helps setting up the cgroups filesystem in the container.  
 ```bash
 ./start.sh
 ```
 
 ## Notes
 No sshd
+
+## Docker, cgroups v2 ans SystemD
+TODO
 
 ## Contributing 🤝
 Pull requests are welcome. For major changes, please open a discussion first to talk about what you would like to change.

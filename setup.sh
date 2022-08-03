@@ -12,7 +12,7 @@ fi
 
 echo
 echo "Running mysql_secure_installation"
-echo "Answer yes to all questions except 'Disallow root login remotely?'"
+echo "Please set a secure root password and answer 'yes' to all questions"
 echo "See:"
 echo "https://docs.centreon.com/docs/installation/installation-of-a-central-server/using-packages/#secure-the-database"
 echo
