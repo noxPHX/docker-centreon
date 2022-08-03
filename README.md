@@ -7,10 +7,11 @@ See below the top level parts of this README:
 
 + [Requirements](#requirements-)
 + [Getting Started](#getting-started-%EF%B8%8F)
++ [Docker, cgroups v2 and SystemD](#docker-cgroups-v2-and-systemd-%EF%B8%8F)
 + [Contributing](#contributing-)
 + [Support](#support-%EF%B8%8F)
 + [Licence](#licence-)
-
++ [References](#references-)
 
 ## Requirements 🧰
 Only [Docker](https://docs.docker.com/get-docker/) and [Compose](https://docs.docker.com/compose/) are required, the following versions are the minimal requirements:
@@ -21,7 +22,7 @@ Only [Docker](https://docs.docker.com/get-docker/) and [Compose](https://docs.do
 | Compose       |  1.29   |
 
 *The container requires a kernel that supports cgroups v2, to ensure they are supported you can run and check the result of the following command: `grep cgroup2 /proc/filesystems`.*  
-*More information about this in the dedicated section: []()*
+*More information about this in the dedicated [section](#docker-cgroups-v2-and-systemd-%EF%B8%8F).*
 
 ## Getting Started 🛠️
 Fetch the code from the repository and enter the folder.
