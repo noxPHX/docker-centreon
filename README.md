@@ -80,11 +80,15 @@ To start the services, a convenient script is available, it helps setting up the
 ./start.sh
 ```
 
-## Notes
-No sshd
+## Docker, cgroups v2 and SystemD ⚠️
+One inconvenience of Centreon is that [it's not really container-friendly](https://github.com/centreon/centreon/issues/6057) as it requires SystemD as an init system.  
+Although it's possible to install the latter in a container, it's at the moment quite a journey to get it working due to an incompatibility with cgroups v2.  
 
-## Docker, cgroups v2 ans SystemD
-TODO
+Without getting too technical, SystemD expects the cgroup filesystem to be writable but this not the case using the default docker driver for cgroups v2. Thus, on recent systems with an up-to-date kernel and Docker version, this problem arises.  
+The challenge was to run the container without having to mount the host's cgroup filesystem or to give additional privileges to the container.  
+After some research the solution is to remount the filesystem from within the container with the correct permissions. This is why a convenient script replaces a simple Compose command.  
+
+*You can find some references on this matter in the last section.*
 
 ## Contributing 🤝
 Pull requests are welcome. For major changes, please open a discussion first to talk about what you would like to change.
@@ -95,8 +99,7 @@ Give a ⭐️ if you like this project and want to support it!
 ## Licence 📃
 [GNU General Public Licence v3.0](https://github.com/noxPHX/docker-centreon/blob/main/LICENSE)
 
-## Doc
-https://docs.centreon.com/docs/installation/installation-of-a-remote-server/using-packages/  
+## References 📚
 https://serverfault.com/questions/1053187/systemd-fails-to-run-in-a-docker-container-when-using-cgroupv2-cgroupns-priva  
 https://systemd.io/CONTAINER_INTERFACE/  
 https://github.com/mviereck/x11docker/issues/349
