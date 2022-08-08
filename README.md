@@ -53,8 +53,14 @@ chmod 640 nginx/ssl/*.pem
 *Compose does not support assigning ownership when mounting secrets.*
 
 ### Configuration
-You can customize the timezone passed as a build argument in the Compose file *(l.7)*.  
+There are two more things to configure.  
+First, you can customize the timezone passed as a build argument in the Compose file *(l.7)*.  
 Default value: `Europe/Amsterdam`.
+
+Then, you must create a file containing a UUID to be fed to the container, you can proceed as follows: 
+```bash
+dbus-uuidgen > machine-id
+```
 
 ### Build
 To build the images, this simple Compose command will suffice: 
@@ -79,6 +85,13 @@ docker exec centreon-central systemctl restart cbd centengine gorgoned
 To start the services, a convenient script is available, it helps setting up the cgroups filesystem in the container.  
 ```bash
 ./start.sh
+```
+
+## Logs 📝
+SystemD's logs of the container are forwarded to the host thanks to journald and the UUID defined previously.  
+To access the logs you can use the following command:
+```bash
+journalctl -fD "/var/log/journal/$(cat ./machine-id)"
 ```
 
 ## Docker, cgroups v2 and SystemD ⚠️
