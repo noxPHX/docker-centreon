@@ -7,6 +7,7 @@ See below the top level parts of this README:
 
 + [Requirements](#requirements-)
 + [Getting Started](#getting-started-%EF%B8%8F)
++ [Logs](#logs-)
 + [Docker, cgroups v2 and SystemD](#docker-cgroups-v2-and-systemd-%EF%B8%8F)
 + [Contributing](#contributing-)
 + [Support](#support-%EF%B8%8F)
