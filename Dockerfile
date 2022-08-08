@@ -9,6 +9,24 @@ ENV container docker
 RUN apt-get update && \
     apt-get -y install systemd
 
+# Mask useless services in containers
+RUN for service in \
+    ntp \
+    getty \
+    console-getty \
+    apt-daily \
+    apt-daily.timer \
+    apt-daily-upgrade \
+    apt-daily-upgrade.timer \
+    unattended-upgrades \
+    systemd-udevd \
+    systemd-logind \
+    systemd-user-sessions \
+    systemd-initctl.socket \
+    systemd-update-utmp-runlevel \
+    systemd-ask-password-wall.path \
+    ;do systemctl mask $service; done
+
 VOLUME [ "/tmp", "/run", "/run/lock", "/var/log/journal" ]
 
 STOPSIGNAL SIGRTMIN+3
