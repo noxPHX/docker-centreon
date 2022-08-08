@@ -23,6 +23,8 @@ services:
       - centreon-broker-etc:/etc/centreon-broker
       - centreon-broker-var:/var/lib/centreon-broker
       - centreon-db:/var/lib/mysql
+      - ./machine-id:/etc/machine-id:ro
+      - "/var/log/journal/${UUID}:/var/log/journal/${UUID}"
     tmpfs:
       - /tmp:rw,rprivate,nosuid,nodev
       - /run:rw,rprivate,nosuid,nodev

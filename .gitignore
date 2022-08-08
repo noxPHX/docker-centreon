@@ -4,3 +4,4 @@
 # Secrets
 nginx/ssl/*
 !nginx/ssl/.gitkeep
+machine-id
