@@ -37,7 +37,7 @@ The stack comes with a nginx container which needs a certificate and its private
 
 If needed, you can quickly generate a self-signed certificate as shown below:
 ```bash
-openssl req -x509 -newkey rsa:4096 -nodes -keyout nginx/ssl/privkey.pem -out nginx/ssl/fullchain.pem -days 365 -subj '/CN=localhost' -addext "subjectAltName=DNS:pdns.local.intra,DNS:pihole.local.intra,IP:127.0.0.1,IP:0.0.0.0"
+openssl req -x509 -newkey rsa:4096 -nodes -keyout nginx/ssl/privkey.pem -out nginx/ssl/fullchain.pem -days 365 -subj '/CN=localhost' -addext "subjectAltName=IP:127.0.0.1,IP:0.0.0.0"
 ```
 
 Regarding the D-H parameters you can generate them as follows:
